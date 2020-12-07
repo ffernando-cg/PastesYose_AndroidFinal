@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.appfinalexamen" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppFinalExamen" >
+        <activity
+            android:name=".Controlador.BottomNav"
+            android:label="@string/title_activity_bottom_nav" >
+        </activity>
+        <activity
+            android:name=".BottomNavigation"
+            android:label="@string/title_activity_bottom_navigation" >
+        </activity>
+        <activity
+            android:name=".ActivityBottomNavigation"
+            android:label="@string/title_activity_bottom_navigation" >
+        </activity>
+        <activity
+            android:name=".ActividyIndex"
+            android:label="@string/title_activity_actividy_index" >
+        </activity>
+        <activity
+            android:name=".BottomNavigationTest"
+            android:label="@string/title_activity_bottom_navigation_test" />
+        <activity android:name=".integrantesdisplay" />
+        <activity android:name=".register_user" />
+        <activity android:name=".Controlador.MainPagePastes" />
+        <activity android:name=".Controlador.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
