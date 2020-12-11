@@ -1,15 +1,20 @@
 package com.example.appfinalexamen.Controlador
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.example.appfinalexamen.R
 import org.imaginativeworld.whynotimagecarousel.CarouselItem
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel
 
+
 class MainPagePastes : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_page_pastes)
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+       /* setContentView(R.layout.activity_main_page_pastes)
         val carousel: ImageCarousel = findViewById(R.id.carousel)
 
         val list = mutableListOf<CarouselItem>()
@@ -33,6 +38,6 @@ class MainPagePastes : AppCompatActivity() {
             )
         )
 
-        carousel.addData(list)
+        carousel.addData(list)*/
     }
 }

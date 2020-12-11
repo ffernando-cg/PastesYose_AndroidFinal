@@ -58,12 +58,12 @@ class PastesDB(context: Context) {
         database.insert("tblUsuarios", null, values)
     }
 
-    fun consultarLogin(_CorreoElectronico: String, _Password: String):Cursor { //TODO VER LA POSIBILIDAD DE CAMBIAR EN VEZ DE NOMBRE DE USUARIO A ID DE USUARIO
+    fun consultarLogin(_CorreoElectronico: String, _Password: String):Cursor {
         return  database.rawQuery(
             """
-            select NombreUsuario
-              from tblUsuarios 
-                where (CorreoElectronico = $_CorreoElectronico AND Password = $_Password)
+            select idUsuario 
+            from tblUsuarios 
+            where (CorreoElectronico = '$_CorreoElectronico' AND Password = '$_Password')
         """.trimIndent(), null
         )
     }

@@ -6,6 +6,6 @@ import android.os.Bundle
 class integrantesdisplay : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_integrantesdisplay)
+        //setContentView(R.layout.activity_integrantesdisplay)
     }
 }

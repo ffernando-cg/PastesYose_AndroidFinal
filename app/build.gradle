@@ -1,7 +1,6 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 30
@@ -45,13 +44,17 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.ablanco.imageprovider:imageprovider:0.1.0'
     //Dependencies for the control of the image carrousel at https://android-arsenal.com/details/1/8053
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'me.relex:circleindicator:2.1.4'
     implementation 'com.github.ImaginativeShohag:Why-Not-Image-Carousel:v1.1.0'
     //Dependencies for the control of the smooth bottom menu at https://android-arsenal.com/details/1/7932#!package
     compile 'com.github.ibrahimsn98:SmoothBottomBar:1.7.6'
+    //Dependencies for circular images
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
