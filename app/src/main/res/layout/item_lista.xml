@@ -20,14 +20,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:id="@+id/lblTitulo"
+            android:id="@+id/lblTitulo2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Titulo"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         <TextView
-            android:id="@+id/lblSubTitulo"
+            android:id="@+id/lblSubTitulo2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Subtitulo"
