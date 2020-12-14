@@ -1,16 +1,15 @@
 package com.example.appfinalexamen
 
 import android.content.Context
+import android.content.Intent
 import android.database.CursorWindow
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.ListView
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
+import com.example.appfinalexamen.Controlador.DetallePaste
 import com.example.appfinalexamen.Entidades.Pastes
 import com.example.appfinalexamen.Modelo.ImageConverter
 import com.example.appfinalexamen.Modelo.PastesDB
@@ -38,6 +37,7 @@ val listPastesShowcase = mutableListOf<CarouselItem>()
 class PasteCasa : Fragment() {
     // TODO: Rename and change types of parameters
     var listPastesShowcase = mutableListOf<CarouselItem>()
+    var registros = ArrayList<Pastes>()
 
     override fun onCreateView(
 
@@ -45,7 +45,7 @@ class PasteCasa : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
-        val view: View =  inflater.inflate(R.layout.fragment_paste_casa, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_paste_casa, container, false)
         val activity = activity as Context
 
         val lstPastes = view.findViewById<ListView>(R.id.lstPastes)
@@ -55,11 +55,22 @@ class PasteCasa : Fragment() {
         val carouselPastes = view.findViewById<ImageCarousel>(R.id.carouselPastes)
         carouselPastes.addData(listPastesShowcase)
 
+        lstPastes.setOnItemClickListener { adapterView, view, position, id ->
+            var intent = Intent(requireContext(), DetallePaste::class.java).apply {
+                putExtra("nombre", registros[position]._NombrePaste)
+                putExtra("descripcion", registros[position]._DescripcionPaste)
+                putExtra("precio", registros[position]._PrecioPaste)
+                putExtra("imagen", registros[position]._img)
+            }
+            startActivity(intent)
+        }
+
+
         return view
 
     }
 
-    fun llenarCarousel() : List<CarouselItem> {
+    fun llenarCarousel(): List<CarouselItem> {
         listPastesShowcase.add(
                 CarouselItem(
                         imageUrl = "https://cdn.kiwilimon.com/recetaimagen/37185/th5-640x426-46748.jpg",
@@ -93,19 +104,18 @@ class PasteCasa : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            PasteCasa().apply {
+                PasteCasa().apply {
 
-            }
+                }
     }
 
-    fun LlenarInformacion(lstPastes: ListView){
+    fun LlenarInformacion(lstPastes: ListView) {
         val datasource = PastesDB(this.requireContext())
 
-        val registros = ArrayList<Pastes>()
 
         val cursor = datasource.consultPastes()
 
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             val columnas = Pastes(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getDouble(3), cursor.getString(4))
             registros.add(columnas)
         }
@@ -114,16 +124,17 @@ class PasteCasa : Fragment() {
         lstPastes.adapter = adaptador
     }
 
-    internal class AdaptadorPersonas(context: Context, datos: List<Pastes>): ArrayAdapter<Pastes>(context, R.layout.item_paste_lista, datos)
-    {
+    internal class AdaptadorPersonas(context: Context, datos: List<Pastes>) : ArrayAdapter<Pastes>(context, R.layout.item_paste_lista, datos) {
         private val imageConverter: ImageConverter = ImageConverter()
         var _datos: List<Pastes>
+
         init {
             _datos = datos
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-            var inflater = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_paste_lista, parent, false)
+            var inflater = convertView
+                    ?: LayoutInflater.from(context).inflate(R.layout.item_paste_lista, parent, false)
 
             val Entidad = getItem(position)
 
@@ -143,10 +154,10 @@ class PasteCasa : Fragment() {
 
     }
 
-    internal class AdaptadorPastes(context: Context, datos: List<Pastes>): ArrayAdapter<Pastes>(context, R.layout.item_paste_lista, datos){
+    internal class AdaptadorPastes(context: Context, datos: List<Pastes>) : ArrayAdapter<Pastes>(context, R.layout.item_paste_lista, datos) {
         var _datos: List<Pastes>
 
-        init{
+        init {
             _datos = datos
         }
 
