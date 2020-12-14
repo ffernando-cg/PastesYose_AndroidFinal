@@ -36,8 +36,30 @@ val listPastesShowcase = mutableListOf<CarouselItem>()
  */
 class PasteCasa : Fragment() {
     // TODO: Rename and change types of parameters
-    override fun onCreate(savedInstanceState: Bundle?) {
-       /* listPastesShowcase.add(
+    var listPastesShowcase = mutableListOf<CarouselItem>()
+
+    override fun onCreateView(
+
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+    ): View? {
+
+        val view: View =  inflater.inflate(R.layout.fragment_paste_casa, container, false)
+        val activity = activity as Context
+
+        val lstPastes = view.findViewById<ListView>(R.id.lstPastes)
+        LlenarInformacion(lstPastes)
+
+        listPastesShowcase = llenarCarousel().toMutableList();
+        val carouselPastes = view.findViewById<ImageCarousel>(R.id.carouselPastes)
+        carouselPastes.addData(listPastesShowcase)
+
+        return view
+
+    }
+
+    fun llenarCarousel() : List<CarouselItem> {
+        listPastesShowcase.add(
                 CarouselItem(
                         imageUrl = "https://cdn.kiwilimon.com/recetaimagen/37185/th5-640x426-46748.jpg",
                         caption = "Paste tradicional!"
@@ -54,50 +76,8 @@ class PasteCasa : Fragment() {
                         imageUrl = "https://ceeccafetales.edu.mx/wp-content/uploads/2020/03/f5de33_ec175605853d4332ba66b3853d5e9e67.jpg",
                         caption = "Delicioso paste hawaiano"
                 )
-        )*/
-        super.onCreate(savedInstanceState)
-        try {
-            val field: Field = CursorWindow::class.java.getDeclaredField("sCursorWindowSize")
-            field.isAccessible = true
-            field.set(null, 100 * 1024 * 1024)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-
-
-    }
-
-    override fun onCreateView(
-
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-
-        //carouselPastes.addData(listPastesShowcase)
-       /* val datasource = PastesDB(requireContext())
-        val registros = ArrayList<Pastes>()
-        val cursor = datasource.consultPastes()
-        while (cursor.moveToNext()){
-            val columnas = Pastes(cursor.getInt(0), cursor.getString(1) ,cursor.getString(2), cursor.getDouble(3), cursor.getString(4))
-            registros.add(columnas)
-        }
-
-        val adaptador = AdaptadorPastes(requireContext(), registros)
-        try {
-            lstPastes.adapter = adaptador
-        }catch (ex:Exception){
-
-        }*/
-        val view: View =  inflater.inflate(R.layout.fragment_paste_casa, container, false)
-        val activity = activity as Context
-
-        val lstPastes = view.findViewById<ListView>(R.id.lstPastes)
-        LlenarInformacion(lstPastes)
-
-        return view
-
+        )
+        return listPastesShowcase
     }
 
     companion object {
