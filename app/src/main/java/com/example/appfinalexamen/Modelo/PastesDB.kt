@@ -71,11 +71,20 @@ class PastesDB(context: Context) {
 
     //TODO Seccion de la base de datos para consultar, borrar, modificar y guardar pedidos
     fun consultPedidos() : Cursor{
-        return database.rawQuery("select * from tblPedidos where isCompleted = false".trimIndent(),null)
+        return database.rawQuery("""select Usu.NombreUsuario, Past.NombrePaste, Ped.cantidadPastes 
+                        from tblPedidos as Ped 
+    INNER JOIN tblPastes as Past
+ on Ped.idPastePedido = Past.idPaste
+INNER JOIN tblUsuarios as Usu
+ on Ped.idUsuarioCliente = Usu.idUsuario""".trimIndent(),null)
     }
 
     fun consultPedidos(idPedido : Int) : Cursor{
-        return database.rawQuery("select * from tblPedidos where idPedidos = $idPedido".trimIndent(),null)
+        return database.rawQuery("" +
+                ("""SELECT tblUsuarios.*, tblPastes.idPastePedido, tblPedidos.cantidadPastes 
+                            FROM tblUsuarios
+                            INNER JOIN tblPastes ON tblPedidos.cantidadPastes = tblPastes.idPastePedido
+                               INNER JOIN tblPedidos ON tblPastes.idPastePedido = tblPedidos.cantidadPastes""").trimIndent(),null)
     }
 
     fun createPedido(_idPastePedido: Int ,_cantidadPastes: Int,_idUsuarioCliente : Int){

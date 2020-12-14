@@ -17,6 +17,7 @@ import com.example.appfinalexamen.Modelo.PastesDB
 import com.example.appfinalexamen.R
 import kotlinx.android.synthetic.main.fragment_paste_casa.*
 import kotlinx.android.synthetic.main.item_lista.view.*
+import kotlinx.android.synthetic.main.item_paste_lista.view.*
 import org.imaginativeworld.whynotimagecarousel.CarouselItem
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel
 import java.lang.reflect.Field
@@ -132,7 +133,7 @@ class PasteCasa : Fragment() {
             lblTitulo2.text = Entidad!!._NombrePaste
             lblSubTitulo2.text = Entidad!!._DescripcionPaste
 
-            //inflater.profile_image.setImageBitmap(imageConverter.bitmap(Entidad!!._imgPersona))
+            inflater.imgProfile.setImageBitmap(imageConverter.bitmap(Entidad!!._img))
 
             return inflater
         }
